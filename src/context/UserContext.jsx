@@ -10,6 +10,17 @@ export const useUserContext =() => {
 export const UserProvider = ({children}) => {
 
   const [user, setUser] = useState()
+  const [inputValue, setInputValue] = useState("")
+  const [todoList, setTodoList] = useState([])
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value)
+  }
+
+  const addItemToList = () => {
+    setTodoList([...todoList, inputValue])
+    setInputValue("")
+  }
 
   useEffect(() => {
     const getUserId = async () => {
@@ -18,9 +29,18 @@ export const UserProvider = ({children}) => {
     }
     getUserId()
   }, [])
+
+  const values = {
+    user, 
+    inputValue, 
+    handleChange,
+    addItemToList
+  }
+
+  console.log(todoList)
   
   return (
-    <UserContext.Provider value={{user}}>
+    <UserContext.Provider value={values}>
       {children}
     </UserContext.Provider>
   )
