@@ -94,21 +94,27 @@ img {
   margin-left: 10px;
 }
 
-.uncompleted_checkbox {
-  width: 15px;
-  height: 15px;
+.box_checkbox {
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   border: 1px solid grey;
-}
-
-.completed_checkbox {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  border: 1px solid grey;
-  background-color: #FF560B;
 }
 
 .msg_completed {
   color: gray;
+}
+
+.material-icons.white {
+  color: white
+}
+
+.material-icons.bg-orange {
+  background-color: #FB8C00;
+  border-radius: 50%;
+  font-size: 20px
+}
+
+.none_radius {
+  border: none;
 }

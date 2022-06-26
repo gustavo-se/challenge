@@ -2,6 +2,7 @@ import axios from "axios"
 
 const USER_URL = `${import.meta.env.VITE_APP_API_URL}/userId`
 const CREATE_ITEM = (userId) => `${import.meta.env.VITE_APP_API_URL}/todo/${userId}`
+const COMPLETED_ITEM = (userId) => `${import.meta.env.VITE_APP_API_URL}/todo/${userId}`
 
 export const getUser = async () => {
   try {
@@ -15,6 +16,15 @@ export const getUser = async () => {
 export const createItem = async (userId, data) => {
   try {
     const response = await axios.post(CREATE_ITEM(userId), data)
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const editItem = async (userId, data) => {
+  try {
+    const response = await axios.put(COMPLETED_ITEM(userId), data)
     return response.data
   } catch (error) {
     console.error(error)

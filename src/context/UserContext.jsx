@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from "react";
-import { createItem, getUser } from "../utils/service";
+import { createItem, editItem, getUser } from "../utils/service";
 
 const UserContext = createContext()
 
@@ -31,6 +31,19 @@ export const UserProvider = ({children}) => {
     }
   }
 
+  const handleChangeCheckbox = async (e) => {
+
+    const req = {completed: e.target.checked, todoId: e.target.id} 
+    try {
+      const response = await editItem(user, req)
+      const updatedItem = {...response, todoId: e.target.id}
+      const updateArr = todoList.filter(t => t.todoId !== e.target.id)
+      setTodoList([...updateArr, updatedItem])
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   useEffect(() => {
     const getUserId = async () => {
       const id = await getUser()
@@ -44,7 +57,8 @@ export const UserProvider = ({children}) => {
     inputValue, 
     handleChange,
     addItemToList,
-    todoList
+    todoList,
+    handleChangeCheckbox
   }
   
   return (
