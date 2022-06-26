@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from "react";
-import { createItem, deleteItem, editItem, getAllItem, getIsCompletedItem, getUser } from "../utils/service";
+import { createItem, deleteItem, editItem, getAllItem, getIsCompletedItem, getUser, resetList } from "../utils/service";
 
 const UserContext = createContext()
 
@@ -84,6 +84,17 @@ export const UserProvider = ({children}) => {
     }
   }
 
+  const handleNewList = async () => {
+    try {
+      const response = await resetList(user)
+      if(response.ok === "true"){
+        setTodoList([])
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   useEffect(() => {
     const getUserId = async () => {
       const id = await getUser()
@@ -101,7 +112,8 @@ export const UserProvider = ({children}) => {
     handleChangeCheckbox,
     select,
     handleSelectChange,
-    handleDeleteItem
+    handleDeleteItem,
+    handleNewList
   }
   
   return (

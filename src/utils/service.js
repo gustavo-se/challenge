@@ -6,6 +6,7 @@ const COMPLETED_ITEM = (userId) => `${import.meta.env.VITE_APP_API_URL}/todo/${u
 const GET_ALL_ITEM = (userId) => `${import.meta.env.VITE_APP_API_URL}/todo/${userId}`
 const GET_COMPLETED = (userId, completed) => `${import.meta.env.VITE_APP_API_URL}/todo/${userId}/${completed}`
 const DELETE_ITEM = (userId) => `${import.meta.env.VITE_APP_API_URL}/todo/${userId}`
+const RESET = (userId) => `${import.meta.env.VITE_APP_API_URL}/todo/${userId}/reset`
 
 export const getUser = async () => {
   try {
@@ -55,6 +56,15 @@ export const getIsCompletedItem= async (userId, completed) => {
 export const deleteItem= async (userId, data) => {
   try {
     const response = await axios.delete(DELETE_ITEM(userId), {data})
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const resetList= async (userId) => {
+  try {
+    const response = await axios.delete(RESET(userId))
     return response.data
   } catch (error) {
     console.error(error)
