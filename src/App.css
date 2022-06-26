@@ -87,11 +87,29 @@ img {
 
 .box_item_todo {
   display: flex;
-  margin: 10px 0
+  margin: 10px 0;
+  align-items: center;
+}
+
+.box_item_todo:hover>small {
+  visibility: visible;
+  margin-left: auto;
+  margin-right: 15px;
+  cursor: pointer;
+  color: gray;
+}
+
+.box_item_todo small:hover {
+  text-decoration: underline;
 }
 
 .box_item_todo label {
   margin-left: 10px;
+}
+
+.box_item_todo small {
+  visibility: hidden;
+  margin-left: auto;
 }
 
 .box_checkbox {
@@ -117,4 +135,8 @@ img {
 
 .none_radius {
   border: none;
+}
+
+.select_active {
+  color: #FB8C00;
 }
