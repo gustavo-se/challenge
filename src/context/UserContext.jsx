@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from "react";
-import { getUser } from "../utils/service";
+import { createItem, getUser } from "../utils/service";
 
 const UserContext = createContext()
 
@@ -17,9 +17,18 @@ export const UserProvider = ({children}) => {
     setInputValue(e.target.value)
   }
 
-  const addItemToList = () => {
-    setTodoList([...todoList, inputValue])
-    setInputValue("")
+  const addItemToList = async () => {
+    const req = {
+      title: inputValue,
+      message: inputValue
+    }
+    try {
+      const response = await createItem(user, req)
+      setTodoList([...todoList, response])
+      setInputValue("")
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   useEffect(() => {
@@ -34,10 +43,9 @@ export const UserProvider = ({children}) => {
     user, 
     inputValue, 
     handleChange,
-    addItemToList
+    addItemToList,
+    todoList
   }
-
-  console.log(todoList)
   
   return (
     <UserContext.Provider value={values}>

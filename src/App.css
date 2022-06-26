@@ -56,3 +56,59 @@ img {
   background-color: black;
   color: white;
 }
+
+.box_todo_list {
+  background-color: white;
+  border-radius: 16px;
+  padding: 5px 10px 5px 20px;
+  margin-top: 15px;
+}
+
+.header_todo_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title_todo_list {
+  display: flex;
+}
+
+.add_new_list {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.status_select {
+  border: none;
+  padding: 5px 5px;
+}
+
+.box_item_todo {
+  display: flex;
+  margin: 10px 0
+}
+
+.box_item_todo label {
+  margin-left: 10px;
+}
+
+.uncompleted_checkbox {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid grey;
+}
+
+.completed_checkbox {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid grey;
+  background-color: #FF560B;
+}
+
+.msg_completed {
+  color: gray;
+}

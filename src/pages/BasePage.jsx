@@ -7,12 +7,17 @@ import ToDoWithoutList from "./ToDoWithoutList"
 
 export const BasePage = () => {
  
+  const {todoList} = useUserContext()
+
   return (
     <div className="App">
       <div className='base'>
         <Header />  
-        {/* <TodoList /> */}
-        <ToDoWithoutList />
+        {todoList.length === 0 ?
+          <ToDoWithoutList />
+          :
+          <TodoList /> 
+        }
         <AddButton />
       </div>
     </div>
